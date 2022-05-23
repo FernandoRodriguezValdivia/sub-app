@@ -1,6 +1,7 @@
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Landing from '../pages/Landing'
+import Footer from '../components/Footer'
 
 function AppRoutes() {
   return (
@@ -9,6 +10,7 @@ function AppRoutes() {
       <Routes>
         <Route path='/' element={<Landing />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
