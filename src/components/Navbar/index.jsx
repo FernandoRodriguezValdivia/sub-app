@@ -11,6 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,7 +58,7 @@ const search = (e) =>{
 	console.log('buscando: ',e.target.buscar.value);
 }
 
-const pages = ['Login', 'Registrarse'];
+const pages = [{title: 'Login', url: '/login'}, {title: 'Registrarse', url: '/register'}];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -73,8 +74,9 @@ export default function Navbar() {
         <Toolbar>
           <Typography
             variant="h6"
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            component={Link}
+            to='/'
+            sx={{ textDecoration: 'none', display: { xs: 'none', sm: 'block' } }}
           >
             SUBASTAS
           </Typography>
@@ -97,13 +99,14 @@ export default function Navbar() {
 						</form>
           </Search>
 					<Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page,i) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={i}
+                component={Link}
+                to={page.url}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -136,9 +139,9 @@ export default function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, i) => (
+                <MenuItem key={i} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

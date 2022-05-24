@@ -9,7 +9,7 @@ export default function Modalidades() {
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       subheader={
-        <ListSubheader component="h1" sx={{bgcolor: 'blue', color: 'white'}}>
+        <ListSubheader component="h1" sx={{bgcolor: 'blue', color: 'white', mt: 0, position: 'static'}}>
           Modalidades
         </ListSubheader>
       }

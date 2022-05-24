@@ -4,6 +4,7 @@ import Categorias from '../../components/Categorias'
 import Modalidades from '../../components/Modalidades'
 import ContainerCard from '../../components/ContainerCard'
 import Typography from '@mui/material/Typography';
+import Live from '../../components/Live'
 
 const images = [
   {
@@ -40,9 +41,13 @@ const Landing = () => {
           <Categorias/>
         </Grid>
         <Grid item xs={10}>
-        <Typography gutterBottom variant="h1" component="div" sx={{fontSize: '15px', fontWeight: '600', textAlign: 'left', m: 3}}>
-            Destacados del dia
-      </Typography>
+        <Typography gutterBottom variant="h1" component="div" sx={{fontSize: '15px', fontWeight: '600', textAlign: 'left', m: 2}}>
+              En vivo
+        </Typography>
+          <Live />
+          <Typography gutterBottom variant="h1" component="div" sx={{fontSize: '15px', fontWeight: '600', textAlign: 'left', m: 2}}>
+              Destacados del dia
+        </Typography>
           <ContainerCard />
         </Grid>
       </Grid>

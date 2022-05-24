@@ -41,7 +41,7 @@ export default function Categorias() {
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       subheader={
-        <ListSubheader component="h1" sx={{bgcolor: 'blue', color: 'white'}}>
+        <ListSubheader component="h1" sx={{bgcolor: 'blue', color: 'white', position: 'static'}}>
           Categorías
         </ListSubheader>
       }
