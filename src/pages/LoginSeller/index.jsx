@@ -9,7 +9,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import CONFIG from '../../utils/host';
 
 const login = async (credentials) => {
-  const response = await fetch(`${CONFIG.url}/api/user/signin`, {
+  const response = await fetch(`${CONFIG.url}/api/seller/signin`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials)
@@ -24,8 +24,8 @@ const changeData = (token, name, type, id) =>{
   localStorage.setItem('id', id)
 }
 
-const Login = () => {
-  const navigate = useNavigate()
+const LoginSeller = () => {
+	const navigate = useNavigate()
 	const send = async (e)=>{
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
@@ -83,7 +83,7 @@ const Login = () => {
             <Button sx={{width: '50%', m: 4}} variant="contained" type='submit'>Login</Button>
           </Grid>
 					<Grid item xs={12} sx={{textAlign: 'left'}}>
-            ¿No tienes registro? <Link to='/register'>Regístrate</Link>
+            ¿No tienes registro? <Link to='/seller-register'>Regístrate</Link>
           </Grid>
           </Grid>
         </Grid>
@@ -99,4 +99,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LoginSeller;

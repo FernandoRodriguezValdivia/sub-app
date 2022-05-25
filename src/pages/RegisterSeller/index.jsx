@@ -13,7 +13,7 @@ import CONFIG from '../../utils/host';
 import {useNavigate} from 'react-router-dom'
 
 const register = async (credentials) => {
-  const response = await fetch(`${CONFIG.url}/api/user/signup`, {
+  const response = await fetch(`${CONFIG.url}/api/seller/signup`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials)
@@ -21,7 +21,8 @@ const register = async (credentials) => {
   return response.json();
 };
 
-const Register = () => {
+const RegisterSeller = () => {
+
   const navigate = useNavigate()
   const send = async (e)=>{
     e.preventDefault()
@@ -29,12 +30,11 @@ const Register = () => {
     try {
       const user = await register(data);
       console.log(user)
-      navigate('/login');
+      navigate('/seller-login');
     } catch {
       console.log('no logeo');
     }
   }
-
   
 	return (
 		<Box style={{minHeight: 'calc(100vh - 262px)', padding: 30}}>
@@ -189,4 +189,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default RegisterSeller;

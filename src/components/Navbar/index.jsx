@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,12 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton'
-import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,32 +55,43 @@ const search = (e) =>{
 
 const pages = [{title: 'Login', url: '/login'}, {title: 'Registrarse', url: '/register'}];
 
+const options =  [{title: 'Quiero vender', url: '/seller-login'}, {title: 'Ayuda', url: '/'}, {title: 'Canales de atención', url: '/'}]
+
 export default function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-	const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const navigate = useNavigate()
+
+  const logout = () =>{
+    localStorage.clear()
+    navigate('/')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{bgcolor: '#332ff3'}}>
+          { !localStorage.getItem('id') && 
+            <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {options.map((page,i) => (
+                <Button
+                  key={i}
+                  component={Link}
+                  to={page.url}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.title}
+                </Button>
+              ))}
+            </Box>
+          }
+        </Toolbar>
+        <Toolbar sx={{bgcolor: '#b8b8b8'}}>
           <Typography
             variant="h6"
             component={Link}
             to='/'
-            sx={{ textDecoration: 'none', display: { xs: 'none', sm: 'block' } }}
+            sx={{ textDecoration: 'none', display: 'block' }}
           >
             SUBASTAS
-          </Typography>
-					<Typography
-            variant="h6"
-            component="div"
-            sx={{ display: { xs: 'block', sm: 'none' },mr: 1 }}
-          >
-            S
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -98,54 +104,38 @@ export default function Navbar() {
 							/>
 						</form>
           </Search>
-					<Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page,i) => (
-              <Button
-                key={i}
-                component={Link}
-                to={page.url}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.title}
-              </Button>
-            ))}
-          </Box>
-					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page, i) => (
-                <MenuItem key={i} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
+          { !localStorage.getItem('id')? 
+            <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: 'flex' }}>
+              {pages.map((page,i) => (
+                <Button
+                  key={i}
+                  component={Link}
+                  to={page.url}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.title}
+                </Button>
               ))}
-            </Menu>
-          </Box>
+            </Box>
+            :
+            <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: 'flex' }}>
+                <Button
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  onClick={logout}
+                >
+                  Desconectar
+                </Button>
+                {
+                  localStorage.getItem('type')==='seller' && 
+                  <Button
+                    sx={{ my: 2, color: 'white', display: 'block', bgcolor: '#d9d9d9' }}
+
+                  >
+                  Agregar productor
+                </Button>
+                }
+            </Box>
+          }
         </Toolbar>
       </AppBar>
     </Box>
