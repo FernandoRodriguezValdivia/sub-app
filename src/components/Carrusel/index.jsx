@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {Box, CardMedia} from '@mui/material'
 
 const styleImage = {
-  maxWidth: '500px',
+  maxWidth: '100vw',
   opacity: '0',
   transition: '1s',
   '&.loaded': {

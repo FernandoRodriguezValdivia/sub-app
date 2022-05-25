@@ -1,10 +1,16 @@
 import './App.css';
-import PrimarySearchAppBar from './Routes'
+import {useContext, useEffect} from 'react'
+import AppRoutes from './Routes'
+import {UserContext} from './context/userContext'
 
 function App() {
+  const { Initialize } = useContext(UserContext);
+  useEffect(()=>{
+    Initialize()
+  },[])
   return (
     <div className="App">
-      <PrimarySearchAppBar />
+      <AppRoutes />
     </div>
   );
 }

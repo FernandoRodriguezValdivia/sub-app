@@ -4,28 +4,27 @@ import Categorias from '../../components/Categorias'
 import Modalidades from '../../components/Modalidades'
 import ContainerCard from '../../components/ContainerCard'
 import Typography from '@mui/material/Typography';
-import Live from '../../components/Live'
 
 const images = [
   {
     label: 'San Francisco – Oakland Bay Bridge, United States',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.cloudinary.com/dj3hlonqp/image/upload/v1653509854/diywfw8by725rh6bcmfy.jpg',
   },
   {
     label: 'Bird',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.cloudinary.com/dj3hlonqp/image/upload/v1653510168/c4mdpdaic6imwyplfee5.jpg',
   },
   {
     label: 'Bali, Indonesia',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+      'https://res.cloudinary.com/dj3hlonqp/image/upload/v1653509854/x6tbg0z0mvs49g01znwq.jpg',
   },
   {
     label: 'Goč, Serbia',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.cloudinary.com/dj3hlonqp/image/upload/v1653509854/yytmpflwkeohnajaoqor.jpg',
   },
 ];
 
@@ -41,10 +40,6 @@ const Landing = () => {
           <Categorias/>
         </Grid>
         <Grid item xs={10}>
-        <Typography gutterBottom variant="h1" component="div" sx={{fontSize: '15px', fontWeight: '600', textAlign: 'left', m: 2}}>
-              En vivo
-        </Typography>
-          <Live />
           <Typography gutterBottom variant="h1" component="div" sx={{fontSize: '15px', fontWeight: '600', textAlign: 'left', m: 2}}>
               Destacados del dia
         </Typography>

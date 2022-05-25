@@ -1,3 +1,4 @@
+import {useContext} from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -6,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import CardMedia from '@mui/material/CardMedia'
 import {Link, useNavigate} from 'react-router-dom'
+import { UserContext } from '../../context/userContext';
 import CONFIG from '../../utils/host';
 
 const login = async (credentials) => {
@@ -17,21 +19,15 @@ const login = async (credentials) => {
   return response.json();
 };
 
-const changeData = (token, name, type, id) =>{
-  localStorage.setItem('token', token)
-  localStorage.setItem('name', name)
-  localStorage.setItem('type', type)
-  localStorage.setItem('id', id)
-}
-
 const Login = () => {
+  const { ChangeTokenState } = useContext(UserContext);
   const navigate = useNavigate()
 	const send = async (e)=>{
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
     try {
       const user = await login(data);
-      changeData(user.token, user.name, user.type, user.id);
+      ChangeTokenState(user.token, user.name, user.type, user.id);
       navigate('/');
     } catch {
       console.log('no logeo');

@@ -7,6 +7,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button'
 import {Link, useNavigate} from 'react-router-dom'
+import {UserContext} from '../../context/userContext'
+import {useContext} from 'react'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,10 +60,11 @@ const pages = [{title: 'Login', url: '/login'}, {title: 'Registrarse', url: '/re
 const options =  [{title: 'Quiero vender', url: '/seller-login'}, {title: 'Ayuda', url: '/'}, {title: 'Canales de atención', url: '/'}]
 
 export default function Navbar() {
+  const { ClearTokenState } = useContext(UserContext);
   const navigate = useNavigate()
 
   const logout = () =>{
-    localStorage.clear()
+    ClearTokenState()
     navigate('/')
   }
 
@@ -129,7 +132,8 @@ export default function Navbar() {
                   localStorage.getItem('type')==='seller' && 
                   <Button
                     sx={{ my: 2, color: 'white', display: 'block', bgcolor: '#d9d9d9' }}
-
+                    component={Link}
+                    to='/create'
                   >
                   Agregar productor
                 </Button>
